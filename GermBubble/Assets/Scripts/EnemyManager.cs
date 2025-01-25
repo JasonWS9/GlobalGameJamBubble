@@ -9,23 +9,26 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemyPrefab;  // The enemy prefab to spawn.
     public int maxEnemies = 10;     // The maximum number of enemies to spawn.
     public float spawnInterval = 2.0f; // The time between enemy spawns.
-    public float lowerBoundFromPlayer;
-    public float upperBoundFromPlayer;
+    public float lowerBoundFromPlayer; // Lowest spawn position from the player
+    public float upperBoundFromPlayer; // Highest spawn position from the player
     
-
-    public float upperBoundY;
-    public float upperBoundX;
-    public float lowerBoundY;
-    public float lowerBoundX;
-
-    private Transform spawnPoint;
+    public float upperBoundY; // Maximum y position of enemy
+    public float upperBoundX; // Maximum x position of enemy
+    public float lowerBoundY; // Minimum y position of enemy
+    public float lowerBoundX; // Minimum x position of enemy
+    
     private float timer = 0.0f;
     private Vector2 spawnPosition;
-    private int enemyCount = 0;
+    public int enemyCount = 0;
 
-    void Start()
+    public static EnemyManager Instance;
+
+    void Awake()
     {
-        spawnPoint = player.transform; // Use the position of this GameObject as the spawn point.
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
     }
 
     void Update()
@@ -66,9 +69,5 @@ public class EnemyManager : MonoBehaviour
         timer += Time.deltaTime;
     }
 
-    public static void spawnEnemies()
-    {
-        
-    }
 }
 
