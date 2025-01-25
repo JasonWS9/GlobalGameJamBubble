@@ -1,13 +1,14 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class PlayerController : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public float playerSpeed = 5f;
     public Rigidbody2D rb;
     public Weapon weapon;
+    private int playerHealth = 5;
 
     Vector2 moveDirection;
     Vector2 mousePosition;
@@ -39,4 +40,29 @@ public class PlayerController : MonoBehaviour
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
     }
+
+    private void playerDamage()
+    {
+        playerHealth--;
+        Debug.Log(playerHealth);
+
+        if (playerHealth <= 0)
+        {
+            Death();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            playerDamage();
+        }
+    }
+
+    private void Death()
+    {
+        SceneChanger.GameOverScene();
+    }
+
 }
