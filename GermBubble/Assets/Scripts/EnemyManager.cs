@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
 
     private Transform spawnPoint;
     private float timer = 0.0f;
-    private Vector2 spawnPosition = new Vector2();
+    private Vector2 spawnPosition;
     private int enemyCount = 0;
 
     void Start()
@@ -33,21 +33,36 @@ public class EnemyManager : MonoBehaviour
         // Check if it's time to spawn a new enemy and if we haven't reached the maximum enemy count.
         if (enemyCount < maxEnemies && timer >= spawnInterval)
         {
-            float radius = 0;
-            while (Mathf.Abs(radius) < lowerBoundFromPlayer)
-                radius = Random.Range(-upperBoundFromPlayer, upperBoundFromPlayer);
+            bool validSpawn = false;
 
-            Vector2 randomPosition = Random.insideUnitCircle * radius;
-            // spawnPosition = spawnPoint.position + new Vector3(randomPosition.x, randomPosition.y);
-            do {
-                spawnPosition = new Vector3(0, 0, 0) + new Vector3(randomPosition.x, randomPosition.y);
-            } while (spawnPosition.x > upperBoundX || spawnPosition.x < lowerBoundX || spawnPosition.y > upperBoundY || spawnPosition.y < lowerBoundY);
-            
+            while (!validSpawn)
+            {
+                // Generate a random position within a circle around the player.
+                float radius = Random.Range(lowerBoundFromPlayer, upperBoundFromPlayer);
+                Vector2 randomPosition = Random.insideUnitCircle.normalized * radius;
+                spawnPosition = (Vector2)player.transform.position + randomPosition;
+
+                // Clamp the position to the stage boundaries.
+                spawnPosition.x = Mathf.Clamp(spawnPosition.x, lowerBoundX, upperBoundX);
+                spawnPosition.y = Mathf.Clamp(spawnPosition.y, lowerBoundY, upperBoundY);
+
+                // Ensure the spawn position is still outside the safe zone around the player.
+                float distanceFromPlayer = Vector2.Distance(spawnPosition, player.transform.position);
+                if (distanceFromPlayer >= lowerBoundFromPlayer)
+                {
+                    validSpawn = true;
+                }
+            }
+
+            // Instantiate the enemy at the valid position.
             Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+
+            // Increment the enemy count and reset the timer.
             enemyCount++;
             timer = 0.0f;
         }
 
+        // Update the timer.
         timer += Time.deltaTime;
     }
 
@@ -56,3 +71,4 @@ public class EnemyManager : MonoBehaviour
         
     }
 }
+
