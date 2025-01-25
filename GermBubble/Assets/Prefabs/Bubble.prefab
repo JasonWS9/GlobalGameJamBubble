@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8346eb6637adf7947a52f8c168bdeab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 5668575051552423871, guid: 594407ceb358aa245b97a4d747d709e5, type: 3}
+  player: {fileID: 0}
   rb: {fileID: 2015620755976913046}
   moveSpeed: 2
   shoots: 0

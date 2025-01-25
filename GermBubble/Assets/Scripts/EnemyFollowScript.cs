@@ -19,6 +19,11 @@ public class EnemyFollowScript : MonoBehaviour
     private float timer = 0.0f;
     Vector2 movement;
 
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     // Update is called once per frame
     void Update()
     {
