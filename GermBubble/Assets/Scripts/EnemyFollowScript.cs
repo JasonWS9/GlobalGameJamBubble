@@ -23,27 +23,27 @@ public class EnemyFollowScript : MonoBehaviour
     void Update()
     {
         movement = player.position - transform.position;
-        // if (shoots)
-        // {
-        //     // Calculate the direction vector from the center to the mouse.
-        //     Vector3 directionToPlayer = player.position - transform.position;
-        //
-        //     // Calculate the rotation while keeping the Y-axis (yaw) rotation fixed.
-        //     Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, directionToPlayer);
-        //     transform.rotation = targetRotation;
-        //     
-        //     shootDirection = player.position - transform.position;
-        //     if (timer >= coolDown)
-        //     {
-        //         //Instantiate a canon ball
-        //         GameObject shot = Instantiate(bullet, transform.position, Quaternion.identity);
-        //         //Apply force
-        //         Rigidbody2D rb = shot.GetComponent<Rigidbody2D>();
-        //         rb.AddForce(shotspeed * shootDirection.normalized, ForceMode2D.Force);
-        //         timer = 0.0f;
-        //     }
-        //     timer += Time.deltaTime;
-        // }
+        if (shoots)
+        {
+            // Calculate the direction vector from the center to the mouse.
+            Vector3 directionToPlayer = player.position - transform.position;
+        
+            // Calculate the rotation while keeping the Y-axis (yaw) rotation fixed.
+            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, directionToPlayer);
+            transform.rotation = targetRotation;
+            
+            shootDirection = player.position - transform.position;
+            if (timer >= coolDown)
+            {
+                //Instantiate a canon ball
+                GameObject shot = Instantiate(bullet, transform.position, Quaternion.identity);
+                //Apply force
+                Rigidbody2D rb = shot.GetComponent<Rigidbody2D>();
+                rb.AddForce(shotspeed * shootDirection.normalized, ForceMode2D.Force);
+                timer = 0.0f;
+            }
+            timer += Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
