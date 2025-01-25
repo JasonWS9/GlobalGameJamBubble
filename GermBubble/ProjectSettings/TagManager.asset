@@ -3,10 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+  tags:
+  - Undefined
+  - PlayerProjectile
+  - Enemy
+=======
+>>>>>>> Stashed changes
+  tags: []
+>>>>>>> fcd2e7072b4665646d0ed0990d2e76da6a1f4809
+=======
   tags:
   - PlayerProjectile
   - Enemy
-  - EnemyProjectile
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
