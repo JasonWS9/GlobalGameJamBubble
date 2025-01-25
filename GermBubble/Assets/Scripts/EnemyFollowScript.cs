@@ -57,7 +57,7 @@ public class EnemyFollowScript : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
             Debug.Log("Enemy destroyed");
-            //Destroy(gameObject);
+            Destroy(gameObject);
             EnemyManager.Instance.enemyCount--;
             GameManager.Instance.score++;
             // EnemyManager.Instance.xp+=5;
