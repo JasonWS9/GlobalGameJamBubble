@@ -25,9 +25,10 @@ public class EnemyFollowScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "PlayerProjectile")
+        if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
-            Destroy(gameObject);
+            Debug.Log("Enemy destroyed");
+            //Destroy(gameObject);
             EnemyManager.Instance.enemyCount--;
             GameManager.Instance.score++;
             // EnemyManager.Instance.xp+=5;

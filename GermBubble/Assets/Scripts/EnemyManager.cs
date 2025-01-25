@@ -31,6 +31,12 @@ public class EnemyManager : MonoBehaviour
             Destroy(this);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+
+    }
+
     void Update()
     {
         // Check if it's time to spawn a new enemy and if we haven't reached the maximum enemy count.
