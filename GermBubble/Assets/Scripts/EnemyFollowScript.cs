@@ -64,7 +64,7 @@ public class EnemyFollowScript : MonoBehaviour
             Debug.Log("Enemy destroyed");
             Destroy(gameObject);
             EnemyManager.Instance.enemyCount--;
-            GameManager.Instance.score++;
+            GameManager.Instance.increaseScore(1);
             // EnemyManager.Instance.xp+=5;
         }
         
