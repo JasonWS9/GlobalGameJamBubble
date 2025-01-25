@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(this);
+
+        powerupUI.SetActive(false);
+
     }
 
     public int score = 0;
