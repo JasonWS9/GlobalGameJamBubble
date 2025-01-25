@@ -29,7 +29,7 @@ public class EnemyFollowScript : MonoBehaviour
         {
             Destroy(gameObject);
             EnemyManager.Instance.enemyCount--;
-            // EnemyManager.Instance.score++;
+            GameManager.Instance.score++;
             // EnemyManager.Instance.xp+=5;
         }
         
