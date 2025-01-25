@@ -47,6 +47,13 @@ public class PauseMenu : MonoBehaviour
 
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("User hasQuit");
+
+    }
+
     // public void BeastiaryButton()
     // {
     //     
@@ -56,11 +63,11 @@ public class PauseMenu : MonoBehaviour
     
     
     
-    // public void MainMenuButton()
-    // {
-    //     SceneManager.Load Scene ( choose a spefic scene)
-    //     
-    // }
+    public void MainMenuButton()
+    {
+        SceneManager.LoadScene("Main Menu");
+
+    }
     
     
 }
