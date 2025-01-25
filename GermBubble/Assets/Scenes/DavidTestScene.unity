@@ -844,9 +844,9 @@ GameObject:
   - component: {fileID: 557127225}
   - component: {fileID: 557127224}
   - component: {fileID: 557127223}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bubble
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1051,7 +1051,6 @@ MonoBehaviour:
   EnemyManager: {fileID: 1393580261}
   playerManager: {fileID: 0}
   score: 0
-  requiredPowerupScore: 20
   powerupUI: {fileID: 1206538865}
   isPowerUpAvailable: 0
 --- !u!1 &844339538
@@ -1428,7 +1427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1206538866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1790,9 +1789,9 @@ GameObject:
   - component: {fileID: 1352183655}
   - component: {fileID: 1352183654}
   - component: {fileID: 1352183653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2063,7 +2062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1352183652}
-  enemyPrefab: {fileID: 557127222}
+  enemyPrefab: {fileID: 2371221519837654399, guid: 64e2ea456d6557f40953e482e4047543, type: 3}
   maxEnemies: 10
   spawnInterval: 2
   lowerBoundFromPlayer: 4
@@ -2097,7 +2096,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1485621453}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2283,7 +2282,7 @@ GameObject:
   - component: {fileID: 1997832858}
   - component: {fileID: 1997832859}
   - component: {fileID: 1997832857}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
