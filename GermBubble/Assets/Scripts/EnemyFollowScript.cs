@@ -53,7 +53,13 @@ public class EnemyFollowScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(Mathf.Abs(movement.x) > comfyDistance && Mathf.Abs(movement.y) > comfyDistance)
+        if (shoots)
+        {
+            if (Mathf.Abs(movement.x) > Mathf.Abs(player.position.x - comfyDistance) &&
+                Mathf.Abs(movement.y) > Mathf.Abs(player.position.y - comfyDistance))
+                rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+        }
+        else
             rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
 
