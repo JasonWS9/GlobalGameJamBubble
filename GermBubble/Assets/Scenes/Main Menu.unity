@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e150220cb33724cb3f8551eceb6bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleRectTransform: {fileID: 0}
+  respawnXPosition: -1000
   speed: 50
   spinSpeed: 100
 --- !u!1 &1097757812
@@ -2015,7 +2015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80dddab57abcd244b85b8821b71b6209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 30
+  moveSpeed: 50
   respawnXPosition: 1000
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

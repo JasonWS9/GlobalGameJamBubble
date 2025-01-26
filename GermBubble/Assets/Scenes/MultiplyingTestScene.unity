@@ -1328,7 +1328,7 @@ MonoBehaviour:
   bullet: {fileID: 3281048692623385993, guid: a4f4fc2ea219c2846a173eac77ee57b0, type: 3}
   comfyDistance: 3
   coolDown: 3
-  shotspeed: 150
+  shotspeed: 250
   shotOffset: 2
 --- !u!212 &689415664
 SpriteRenderer:

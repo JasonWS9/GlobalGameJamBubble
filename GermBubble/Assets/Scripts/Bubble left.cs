@@ -2,17 +2,15 @@ using UnityEngine;
 
 public class BubbleLeft : MonoBehaviour
 {
-    public RectTransform bubbleRectTransform;  // Reference to the bubble's RectTransform
+    public float respawnXPosition = -1000f; // X position where the image respawns (can be off-screen)
     public float speed = 5f;                   // Speed at which the bubble moves
     public float spinSpeed = 100f;             // Speed of rotation (degrees per second)
+    private RectTransform bubbleRectTransform;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (bubbleRectTransform == null)
-        {
-            bubbleRectTransform = GetComponent<RectTransform>();  // Get RectTransform if not assigned
-        }
+        bubbleRectTransform = GetComponent<RectTransform>(); // Get the RectTransform of the Image
     }
 
     // Update is called once per frame
@@ -29,7 +27,7 @@ public class BubbleLeft : MonoBehaviour
         {
             // Reset to the left side of the screen
             float bubbleWidth = bubbleRectTransform.rect.width;
-            bubbleRectTransform.anchoredPosition = new Vector2(+bubbleWidth, bubbleRectTransform.anchoredPosition.y);
+            bubbleRectTransform.anchoredPosition = new Vector2(respawnXPosition, bubbleRectTransform.anchoredPosition.y);
         }
     }
 }
