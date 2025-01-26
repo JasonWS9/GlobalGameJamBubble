@@ -199,7 +199,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Down-removebg-preview_0: -3739477086800678770
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
