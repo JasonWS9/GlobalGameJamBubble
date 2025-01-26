@@ -568,6 +568,7 @@ MonoBehaviour:
   comfyDistance: 0
   coolDown: 3
   shotspeed: 6
+  shotOffset: 2
 --- !u!212 &377779759
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1279,7 +1280,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.25
 --- !u!50 &689415662
 Rigidbody2D:
   serializedVersion: 5
@@ -1320,14 +1321,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1720437687}
-  rb: {fileID: 0}
+  rb: {fileID: 689415662}
   health: 5
   moveSpeed: 2
   shoots: 1
   bullet: {fileID: 3281048692623385993, guid: a4f4fc2ea219c2846a173eac77ee57b0, type: 3}
   comfyDistance: 3
   coolDown: 3
-  shotspeed: 6
+  shotspeed: 150
+  shotOffset: 2
 --- !u!212 &689415664
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1372,7 +1374,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 8026786313690856358, guid: 0fa08c326021cad478d429b9e44fa946, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1393,7 +1395,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.39, y: -0.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2180,7 +2182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1539047316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2194,7 +2196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1720437686}
-  enemyPrefab: {fileID: 2371221519837654399, guid: 64e2ea456d6557f40953e482e4047543, type: 3}
+  bubbleEnemyPrefab: {fileID: 2371221519837654399, guid: 64e2ea456d6557f40953e482e4047543, type: 3}
   maxEnemies: 10
   spawnInterval: 0.5
   lowerBoundFromPlayer: 4
@@ -2373,7 +2375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1686996641
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3353,7 +3355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1934404613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3375,6 +3377,7 @@ MonoBehaviour:
   comfyDistance: 0
   coolDown: 3
   shotspeed: 6
+  shotOffset: 2
 --- !u!58 &1934404614
 CircleCollider2D:
   m_ObjectHideFlags: 0

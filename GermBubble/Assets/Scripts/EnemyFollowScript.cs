@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyFollowScript : MonoBehaviour
@@ -14,6 +15,7 @@ public class EnemyFollowScript : MonoBehaviour
     public float comfyDistance;
     public float coolDown = 3f;
     public float shotspeed = 6f;
+    public float shotOffset = 2f;
 
     private Vector2 shootDirection;
     private float timer = 0.0f;
@@ -48,7 +50,9 @@ public class EnemyFollowScript : MonoBehaviour
             if (timer >= coolDown)
             {
                 //Instantiate a canon ball
-                GameObject shot = Instantiate(bullet, transform.position, Quaternion.identity);
+                GameObject shot = Instantiate(bullet,
+                    new Vector2(transform.position.x + shootDirection.normalized.x,
+                        transform.position.y + shootDirection.normalized.y), Quaternion.identity);//transform.position + shootDirection.normalized, Quaternion.identity);
                 //Apply force
                 Rigidbody2D rb = shot.GetComponent<Rigidbody2D>();
                 rb.AddForce(shotspeed * shootDirection.normalized, ForceMode2D.Force);
@@ -60,8 +64,17 @@ public class EnemyFollowScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(Mathf.Abs(movement.x) > comfyDistance && Mathf.Abs(movement.y) > comfyDistance)
+        if (shoots)
+        {
+            if(Mathf.Abs(movement.x) > comfyDistance && Mathf.Abs(movement.y) > comfyDistance)
+                rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
             rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+        }
+        
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

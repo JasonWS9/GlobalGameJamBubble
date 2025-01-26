@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 public class EnemyManager : MonoBehaviour
 {
     public GameObject player;
-    public GameObject enemyPrefab;  // The enemy prefab to spawn.
+    [FormerlySerializedAs("enemyPrefab")] public GameObject bubbleEnemyPrefab;  // The enemy prefab to spawn.
     public int maxEnemies = 10;     // The maximum number of enemies to spawn.
     public float spawnInterval = 2.0f; // The time between enemy spawns.
     public float lowerBoundFromPlayer; // Lowest spawn position from the player
@@ -64,7 +64,7 @@ public class EnemyManager : MonoBehaviour
             }
 
             // Instantiate the enemy at the valid position.
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            Instantiate(bubbleEnemyPrefab, spawnPosition, Quaternion.identity);
 
             // Increment the enemy count and reset the timer.
             enemyCount++;
