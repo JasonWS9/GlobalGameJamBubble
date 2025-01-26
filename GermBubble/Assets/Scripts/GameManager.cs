@@ -22,8 +22,16 @@ public class GameManager : MonoBehaviour
 
     }
 
+    void Start()
+    {
+        Debug.Log(Upgrades.upgrades[0].Name + ": " + Upgrades.upgrades[0].UID);
+        Debug.Log(Upgrades.upgrades[1].Name + ": " + Upgrades.upgrades[1].UID);
+        Debug.Log(Upgrades.upgrades[2].Name + ": " + Upgrades.upgrades[2].UID);
+    }
+
     public int score = 0;
     private int requiredPowerupScore = 10;
+    private int scoreIncreaseAmount = 1;
     private bool powerUpReadied = false;
 
     public TextMeshProUGUI HealthUI;
@@ -60,51 +68,39 @@ public class GameManager : MonoBehaviour
         DamageUI.text = "Damage: " + PlayerManager.Instance.damage;
         ScoreUI.text = "Score: " + score;
         WaveUI.text = "Wave: " + EnemyManager.Instance.wave;
-        if (score >= requiredPowerupScore && !powerUpReadied)
+        if (score >= requiredPowerupScore)
         {
             Debug.Log("Spawn Powerup");
             ReadyPowerUp();
-            powerUpReadied= true;
+            score = 0;
+            requiredPowerupScore += scoreIncreaseAmount;
+            scoreIncreaseAmount *= 2;
         }
     }
 
     private void DisplayRandomPowerUps()
     {
-        List<int> UIDs = new List<int>();
-        UIDs.Add(Random.Range(0, Upgrades.Upgrade.NextUID - 1));
-        while(UIDs.Count < 3)
-        {
-            int temp = Random.Range(0, Upgrades.Upgrade.NextUID - 1);
-
-            if(!UIDs.Contains(temp))
-            {
-                UIDs.Add(temp);
-            }
-        }
-
-        Debug.Log("First: " + UIDs[0] + " Second: " + UIDs[1] + " Third " + UIDs[2]);
-
-        // int randomUID = Random.Range(0, Upgrades.Upgrade.NextUID - 1);
-        Upgrades.Upgrade upgrade = Upgrades.upgrades[UIDs[0]];
-        button1text1.text = upgrade.Name;
-        button1text2.text = upgrade.Description;
-        button1text3.text = upgrade.Type + "";
+        
+        
+        button1text1.text = Upgrades.upgrades[0].Name;
+        button1text2.text = Upgrades.upgrades[0].Description;
+        button1text3.text = Upgrades.upgrades[0].Type + "";
         button1.onClick.AddListener(delegate {
-            Upgrades.ApplyUpgrade(upgrade);
+            Upgrades.ApplyUpgrade(0);
         });
-        upgrade = Upgrades.upgrades[UIDs[1]];
-        button2text1.text = upgrade.Name;
-        button2text2.text = upgrade.Description;
-        button2text3.text = upgrade.Type + "";
+
+        button2text1.text = Upgrades.upgrades[1].Name;
+        button2text2.text = Upgrades.upgrades[1].Description;
+        button2text3.text = Upgrades.upgrades[1].Type + "";
         button2.onClick.AddListener(delegate {
-            Upgrades.ApplyUpgrade(upgrade);
+            Upgrades.ApplyUpgrade(1);
         });
-        upgrade = Upgrades.upgrades[UIDs[2]];
-        button3text1.text = upgrade.Name;
-        button3text2.text = upgrade.Description;
-        button3text3.text = upgrade.Type + "";
+
+        button3text1.text = Upgrades.upgrades[2].Name;
+        button3text2.text = Upgrades.upgrades[2].Description;
+        button3text3.text = Upgrades.upgrades[2].Type + "";
         button3.onClick.AddListener(delegate {
-            Upgrades.ApplyUpgrade(upgrade);
+            Upgrades.ApplyUpgrade(2);
         });
     }
 

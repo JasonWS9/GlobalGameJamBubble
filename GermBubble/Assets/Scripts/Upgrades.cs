@@ -4,27 +4,29 @@ using UnityEngine;
 public class Upgrades : MonoBehaviour
 {
     
-    
     public static Upgrade[] upgrades = new Upgrade[]
     {
         new Upgrade("SpeedUp", "Gotta go fast, Increase speed by 5.", Upgrade.UpgradeType.StatChange),
         new Upgrade("DamageUp","The Stronger, the Dirtier. Increase damage by 5",Upgrade.UpgradeType.StatChange),
+        new Upgrade("AddBuddy","Bacteria never fights alone. Add a buddy to help you!", Upgrade.UpgradeType.WeaponChange),
+        new Upgrade("BuddyDamageUp", "Strength in Numbers! Make your allies stronger.", Upgrade.UpgradeType.StatChange),
         
         new Upgrade("BeamEm", "Blast Through them", Upgrade.UpgradeType.WeaponChange),
         new Upgrade("RadialBlast", "Attack All Around", Upgrade.UpgradeType.WeaponChange),
     };
 
-    public static void ApplyUpgrade(Upgrade upgrade)
+
+    public static void ApplyUpgrade(int UID)
     {
-        switch (upgrade.UID)
+        switch (UID)
         {
-            case 1: //SpeedUp
+            case 0: //SpeedUp
                 PlayerManager.Instance.playerSpeed += 5;
                 break;
-            case 2: //DamageUp
+            case 1: //DamageUp
                 PlayerManager.Instance.damage += 5;
                 break;
-            case 3: //BeamEm
+            case 2: //BeamEm
                 PlayerManager.Instance.fireType = PlayerManager.FireType.Beam;
                 break;
                 
