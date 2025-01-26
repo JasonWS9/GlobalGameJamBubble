@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 29dc185720793084f9b2a3d9bfcc213c
+guid: aa516f5e51ec58a49b5545ffebfca971
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8204404436265788730
-    second: hygiene-sponge-kitchen-game-pixel-art-vector-47160348-removebg-preview_0
+      213: -2663535832072925069
+    second: Untitled_11-b99d_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -165,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hygiene-sponge-kitchen-game-pixel-art-vector-47160348-removebg-preview_0
+      name: Untitled_11-b99d_0
       rect:
         serializedVersion: 2
-        x: 47
-        y: 145
-        width: 381
-        height: 267
+        x: 61
+        y: 157
+        width: 70
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ca1dbe42a9142e80800000000000000
-      internalID: -8204404436265788730
+      spriteID: 370d4c2d548390bd0800000000000000
+      internalID: -2663535832072925069
       vertices: []
       indices: 
       edges: []
@@ -199,8 +199,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      hygiene-sponge-kitchen-game-pixel-art-vector-47160348-removebg-preview_0: -8204404436265788730
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
