@@ -1,5 +1,8 @@
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +26,12 @@ public class GameManager : MonoBehaviour
     private bool powerUpReadied = false;
 
     public GameObject powerupUI;
+    public Button button1;
+    public TextMeshProUGUI text1;
+    public Button button2;
+    public TextMeshProUGUI text2;
+    public Button button3;
+    public TextMeshProUGUI text3;
     public bool isPowerUpAvailable;
     public void increaseScore(int Score)
     {
@@ -41,11 +50,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void DisplayRandomPowerUp(Button button, TextMeshProUGUI text)
+    {
+        int randomUID = Random.Range(0, Upgrades.Upgrade.NextUID - 1);
+        Upgrades.Upgrade upgrade = Upgrades.upgrades[randomUID];
+        text.text = upgrade.Name + "\n" + upgrade.Description + "\n" + upgrade.Type;
+        button.onClick.AddListener(delegate {
+            Upgrades.ApplyUpgrade(randomUID);
+        });
+        
+    }
+
     private void ReadyPowerUp()
     {
+        DisplayRandomPowerUp(button1, text1);
+        DisplayRandomPowerUp(button2, text2);
+        DisplayRandomPowerUp(button3, text3);
         powerupUI.SetActive(true);
         Time.timeScale = 0f;
         playerManager.enabled = false;
+        
     }
 
 

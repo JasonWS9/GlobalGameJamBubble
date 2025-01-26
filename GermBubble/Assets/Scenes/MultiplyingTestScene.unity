@@ -644,7 +644,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyManager: {fileID: 1946260780}
+  playerManager: {fileID: 0}
   score: 0
+  powerupUI: {fileID: 0}
+  isPowerUpAvailable: 0
 --- !u!4 &1445805240
 Transform:
   m_ObjectHideFlags: 0
@@ -1126,7 +1129,11 @@ MonoBehaviour:
   player: {fileID: 910900238}
   rb: {fileID: 1906190532}
   moveSpeed: 2
+  shoots: 0
+  bullet: {fileID: 0}
   comfyDistance: 0
+  coolDown: 3
+  shotspeed: 6
 --- !u!212 &1906190535
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1227,7 +1234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 910900238}
-  enemyPrefab: {fileID: 1906190531}
+  enemyPrefab: {fileID: 2371221519837654399, guid: 64e2ea456d6557f40953e482e4047543, type: 3}
   maxEnemies: 10
   spawnInterval: 2
   lowerBoundFromPlayer: 4
@@ -1271,7 +1278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2002126894
 MonoBehaviour:
   m_ObjectHideFlags: 0

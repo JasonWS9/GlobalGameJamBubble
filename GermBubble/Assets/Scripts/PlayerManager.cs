@@ -4,8 +4,12 @@ using UnityEngine.Rendering;
 
 public class PlayerManager : MonoBehaviour
 {
-
+    public int maxHealth = 5;
     public float playerSpeed = 5f;
+    public static float damage = 10f;
+
+    public FireType fireType = FireType.Bullet;
+    
     public Rigidbody2D rb;
     public Weapon weapon;
     private int playerHealth = 5;
@@ -25,7 +29,16 @@ public class PlayerManager : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            weapon.Fire();
+            switch (fireType)
+            {
+                case FireType.Bullet:
+                    weapon.FireBullet();
+                    break;
+                case FireType.Beam:
+                    weapon.FireBeam();
+                    break;
+            }
+            
         }
 
         moveDirection = new Vector2(moveX, moveY).normalized;
@@ -63,6 +76,11 @@ public class PlayerManager : MonoBehaviour
     private void Death()
     {
         SceneChanger.GameOverScene();
+    }
+
+    public enum FireType
+    {
+        Bullet, Beam
     }
 
 }

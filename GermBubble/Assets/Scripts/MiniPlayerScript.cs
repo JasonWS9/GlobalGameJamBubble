@@ -30,7 +30,7 @@ public class MiniPlayerScript : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            weapon.Fire();
+            weapon.FireBullet();
         }
 
         moveDirection = new Vector2(moveX, moveY).normalized;

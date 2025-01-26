@@ -6,8 +6,8 @@ public class EnemyFollowScript : MonoBehaviour
 {
     public Transform player;
     public Rigidbody2D rb;
+    public float health = 5f;
     public float moveSpeed;
-
 
     public bool shoots;
     public GameObject bullet;
@@ -27,6 +27,13 @@ public class EnemyFollowScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health < 0)
+        {
+            EnemyManager.Instance.enemyCount--;
+            Destroy(gameObject);
+        }
+
+        ;
         movement = player.position - transform.position;
         if (shoots)
         {
@@ -62,8 +69,9 @@ public class EnemyFollowScript : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
             Debug.Log("Enemy destroyed");
-            Destroy(gameObject);
-            EnemyManager.Instance.enemyCount--;
+            //Destroy(gameObject);
+            health -= PlayerManager.damage;
+            // EnemyManager.Instance.enemyCount--;
             GameManager.Instance.increaseScore(1);
             // EnemyManager.Instance.xp+=5;
         }
