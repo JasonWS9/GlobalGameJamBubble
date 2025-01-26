@@ -102,7 +102,7 @@ public class EnemyManager : MonoBehaviour
             timer = 0.0f;
         }
 
-        if(spawnedEnemies >= 20)
+        if(spawnedEnemies >= 5)
         {
             spawnedEnemies = 0;
             upgradeWave = true;
@@ -114,11 +114,36 @@ public class EnemyManager : MonoBehaviour
     void spawnEnemiesForWave2()
     {
         // Check if it's time to spawn a new enemy and if we haven't reached the maximum enemy count.
-        if (enemyCount < maxEnemies && timer >= spawnInterval)
+        if (enemyCount < maxEnemies && timer >= spawnInterval - 0.3)
+        {
+            getValidSpawnPosition();
+
+            // Instantiate the enemy at the valid position.
+            Instantiate(bubbleEnemyPrefab, spawnPosition, Quaternion.identity);
+
+            // Increment the enemy count and reset the timer.
+            spawnedEnemies++;
+            enemyCount++;
+            timer = 0.0f;
+        }
+
+        if(spawnedEnemies >= 5)
+        {
+            spawnedEnemies = 0;
+            upgradeWave = true;
+            Debug.Log("Changing from wave 1 to 2.");
+        }
+
+    }
+
+    void spawnEnemiesForWave3()
+    {
+        // Check if it's time to spawn a new enemy and if we haven't reached the maximum enemy count.
+        if (enemyCount < maxEnemies && timer >= spawnInterval - 0.6)
         {
             getValidSpawnPosition();
             
-            int random = Random.Range(1, 2);
+            int random = Random.Range(1, 3);
             switch(random)
             {
                 case 1:
@@ -135,7 +160,7 @@ public class EnemyManager : MonoBehaviour
             timer = 0.0f;
         }
 
-        if(spawnedEnemies >= 20)
+        if(spawnedEnemies >= 10)
         {
             spawnedEnemies = 0;
             //upgradeWave = true;
@@ -143,14 +168,14 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    void spawnEnemiesForWave3()
+    void spawnEnemiesForWave4()
     {
         // Check if it's time to spawn a new enemy and if we haven't reached the maximum enemy count.
         if (enemyCount < maxEnemies && timer >= spawnInterval)
         {
             getValidSpawnPosition();
             
-            int random = Random.Range(1, 2);
+            int random = Random.Range(1,3);
             switch(random)
             {
                 case 1:

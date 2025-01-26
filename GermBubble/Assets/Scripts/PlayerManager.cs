@@ -86,6 +86,10 @@ public class PlayerManager : MonoBehaviour
         {
             playerDamage();
         }
+        if (collision.gameObject.CompareTag("EnemyProjectile"))
+        {
+            playerDamage();
+        }
     }
 
     private void Death()

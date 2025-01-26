@@ -14,15 +14,15 @@ public class Upgrades : MonoBehaviour
         new Upgrade("RadialBlast", "Attack All Around", Upgrade.UpgradeType.WeaponChange),
     };
 
-    public static void ApplyUpgrade(int UID)
+    public static void ApplyUpgrade(Upgrade upgrade)
     {
-        switch (UID)
+        switch (upgrade.UID)
         {
             case 1: //SpeedUp
-                PlayerManager.Instance.playerSpeed++;
+                PlayerManager.Instance.playerSpeed += 5;
                 break;
             case 2: //DamageUp
-                PlayerManager.Instance.damage++;
+                PlayerManager.Instance.damage += 5;
                 break;
             case 3: //BeamEm
                 PlayerManager.Instance.fireType = PlayerManager.FireType.Beam;

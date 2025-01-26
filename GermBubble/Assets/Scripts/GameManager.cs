@@ -8,7 +8,6 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject EnemyManager;
     
     public static GameManager Instance;
     public PlayerManager playerManager;
@@ -31,6 +30,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI SpeedUI;
     public TextMeshProUGUI DamageUI;
     public TextMeshProUGUI ScoreUI;
+    public TextMeshProUGUI WaveUI;
 
     public GameObject powerupUI;
     public Button button1;
@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
         SpeedUI.text = "Speed: " + PlayerManager.Instance.playerSpeed;
         DamageUI.text = "Damage: " + PlayerManager.Instance.damage;
         ScoreUI.text = "Score: " + score;
+        WaveUI.text = "Wave: " + EnemyManager.Instance.wave;
         if (score >= requiredPowerupScore && !powerUpReadied)
         {
             Debug.Log("Spawn Powerup");
@@ -89,21 +90,21 @@ public class GameManager : MonoBehaviour
         button1text2.text = upgrade.Description;
         button1text3.text = upgrade.Type + "";
         button1.onClick.AddListener(delegate {
-            Upgrades.ApplyUpgrade(UIDs[0]);
+            Upgrades.ApplyUpgrade(upgrade);
         });
         upgrade = Upgrades.upgrades[UIDs[1]];
         button2text1.text = upgrade.Name;
         button2text2.text = upgrade.Description;
         button2text3.text = upgrade.Type + "";
         button2.onClick.AddListener(delegate {
-            Upgrades.ApplyUpgrade(UIDs[1]);
+            Upgrades.ApplyUpgrade(upgrade);
         });
         upgrade = Upgrades.upgrades[UIDs[2]];
         button3text1.text = upgrade.Name;
         button3text2.text = upgrade.Description;
         button3text3.text = upgrade.Type + "";
         button3.onClick.AddListener(delegate {
-            Upgrades.ApplyUpgrade(UIDs[2]);
+            Upgrades.ApplyUpgrade(upgrade);
         });
     }
 
