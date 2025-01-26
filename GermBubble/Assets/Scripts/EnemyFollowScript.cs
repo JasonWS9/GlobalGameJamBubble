@@ -83,7 +83,7 @@ public class EnemyFollowScript : MonoBehaviour
         {
             Debug.Log("Enemy destroyed");
             //Destroy(gameObject);
-            health -= PlayerManager.damage;
+            health -= PlayerManager.Instance.damage;
             // EnemyManager.Instance.enemyCount--;
             GameManager.Instance.increaseScore(1);
             // EnemyManager.Instance.xp+=5;

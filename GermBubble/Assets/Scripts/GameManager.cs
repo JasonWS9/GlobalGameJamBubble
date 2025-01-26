@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Serialization;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     private int requiredPowerupScore = 10;
     private bool powerUpReadied = false;
+
+    public TextMeshProUGUI HealthUI;
+    public TextMeshProUGUI SpeedUI;
+    public TextMeshProUGUI DamageUI;
+    public TextMeshProUGUI ScoreUI;
 
     public GameObject powerupUI;
     public Button button1;
@@ -49,6 +55,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HealthUI.text = "Health: " + PlayerManager.Instance.playerHealth;
+        SpeedUI.text = "Speed: " + PlayerManager.Instance.playerSpeed;
+        DamageUI.text = "Damage: " + PlayerManager.Instance.damage;
+        ScoreUI.text = "Score: " + score;
         if (score >= requiredPowerupScore && !powerUpReadied)
         {
             Debug.Log("Spawn Powerup");
@@ -57,24 +67,49 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void DisplayRandomPowerUp(Button button, TextMeshProUGUI text1, TextMeshProUGUI text2, TextMeshProUGUI text3)
+    private void DisplayRandomPowerUps()
     {
-        int randomUID = Random.Range(0, Upgrades.Upgrade.NextUID - 1);
-        Upgrades.Upgrade upgrade = Upgrades.upgrades[randomUID];
-        text1.text = upgrade.Name;
-        text2.text = upgrade.Description;
-        text3.text = upgrade.Type + "";
-        button.onClick.AddListener(delegate {
-            Upgrades.ApplyUpgrade(randomUID);
+        List<int> UIDs = new List<int>();
+        UIDs.Add(Random.Range(0, Upgrades.Upgrade.NextUID - 1));
+        while(UIDs.Count < 3)
+        {
+            int temp = Random.Range(0, Upgrades.Upgrade.NextUID - 1);
+
+            if(!UIDs.Contains(temp))
+            {
+                UIDs.Add(temp);
+            }
+        }
+
+        Debug.Log("First: " + UIDs[0] + " Second: " + UIDs[1] + " Third " + UIDs[2]);
+
+        // int randomUID = Random.Range(0, Upgrades.Upgrade.NextUID - 1);
+        Upgrades.Upgrade upgrade = Upgrades.upgrades[UIDs[0]];
+        button1text1.text = upgrade.Name;
+        button1text2.text = upgrade.Description;
+        button1text3.text = upgrade.Type + "";
+        button1.onClick.AddListener(delegate {
+            Upgrades.ApplyUpgrade(UIDs[0]);
         });
-        
+        upgrade = Upgrades.upgrades[UIDs[1]];
+        button2text1.text = upgrade.Name;
+        button2text2.text = upgrade.Description;
+        button2text3.text = upgrade.Type + "";
+        button2.onClick.AddListener(delegate {
+            Upgrades.ApplyUpgrade(UIDs[1]);
+        });
+        upgrade = Upgrades.upgrades[UIDs[2]];
+        button3text1.text = upgrade.Name;
+        button3text2.text = upgrade.Description;
+        button3text3.text = upgrade.Type + "";
+        button3.onClick.AddListener(delegate {
+            Upgrades.ApplyUpgrade(UIDs[2]);
+        });
     }
 
     private void ReadyPowerUp()
     {
-        DisplayRandomPowerUp(button1, button1text1, button1text2, button1text3);
-        DisplayRandomPowerUp(button2, button2text1, button2text2, button2text3);
-        DisplayRandomPowerUp(button3, button3text1, button3text2, button3text3);
+        DisplayRandomPowerUps();
         powerupUI.SetActive(true);
         Time.timeScale = 0f;
         playerManager.enabled = false;

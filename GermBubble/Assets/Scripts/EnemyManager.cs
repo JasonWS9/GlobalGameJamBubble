@@ -6,7 +6,8 @@ using UnityEngine.Serialization;
 public class EnemyManager : MonoBehaviour
 {
     public GameObject player;
-    [FormerlySerializedAs("enemyPrefab")] public GameObject bubbleEnemyPrefab;  // The enemy prefab to spawn.
+    public GameObject bubbleEnemyPrefab;  // The enemy prefab to spawn.
+    public GameObject FoamEnemyPrefab;
     public int maxEnemies = 10;     // The maximum number of enemies to spawn.
     public float spawnInterval = 2.0f; // The time between enemy spawns.
     public float lowerBoundFromPlayer; // Lowest spawn position from the player
@@ -21,7 +22,13 @@ public class EnemyManager : MonoBehaviour
     private Vector2 spawnPosition;
     public int enemyCount = 0;
 
+    public int wave = 1;
+    public bool upgradeWave = false;
+    private int spawnedEnemies = 0;
+    
+
     public static EnemyManager Instance;
+
 
     void Awake()
     {
@@ -31,48 +38,140 @@ public class EnemyManager : MonoBehaviour
             Destroy(this);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void Update()
     {
-
-
+        if(upgradeWave)
+        {
+            wave++;
+            upgradeWave = false;
+        }
+            
+        switch(wave)
+        {
+            case 1:
+                spawnEnemiesForWave1();
+                break;
+            case 2:
+                spawnEnemiesForWave2();
+                break;
+            case 3:
+                spawnEnemiesForWave3();
+                break;
+        }
+        
+        // Update the timer.
+        timer += Time.deltaTime;
     }
 
-    void Update()
+    private void getValidSpawnPosition()
+    {
+        bool validSpawn = false;
+        while (!validSpawn)
+        {
+            // Generate a random position within a circle around the player.
+            float radius = Random.Range(lowerBoundFromPlayer, upperBoundFromPlayer);
+            Vector2 randomPosition = Random.insideUnitCircle.normalized * radius;
+            spawnPosition = (Vector2)player.transform.position + randomPosition;
+
+            // Clamp the position to the stage boundaries.
+            spawnPosition.x = Mathf.Clamp(spawnPosition.x, lowerBoundX, upperBoundX);
+            spawnPosition.y = Mathf.Clamp(spawnPosition.y, lowerBoundY, upperBoundY);
+
+            // Ensure the spawn position is still outside the safe zone around the player.
+            float distanceFromPlayer = Vector2.Distance(spawnPosition, player.transform.position);
+            if (distanceFromPlayer >= lowerBoundFromPlayer)
+            {
+                validSpawn = true;
+            }
+        }
+    }
+
+    void spawnEnemiesForWave1()
     {
         // Check if it's time to spawn a new enemy and if we haven't reached the maximum enemy count.
         if (enemyCount < maxEnemies && timer >= spawnInterval)
         {
-            bool validSpawn = false;
-
-            while (!validSpawn)
-            {
-                // Generate a random position within a circle around the player.
-                float radius = Random.Range(lowerBoundFromPlayer, upperBoundFromPlayer);
-                Vector2 randomPosition = Random.insideUnitCircle.normalized * radius;
-                spawnPosition = (Vector2)player.transform.position + randomPosition;
-
-                // Clamp the position to the stage boundaries.
-                spawnPosition.x = Mathf.Clamp(spawnPosition.x, lowerBoundX, upperBoundX);
-                spawnPosition.y = Mathf.Clamp(spawnPosition.y, lowerBoundY, upperBoundY);
-
-                // Ensure the spawn position is still outside the safe zone around the player.
-                float distanceFromPlayer = Vector2.Distance(spawnPosition, player.transform.position);
-                if (distanceFromPlayer >= lowerBoundFromPlayer)
-                {
-                    validSpawn = true;
-                }
-            }
+            getValidSpawnPosition();
 
             // Instantiate the enemy at the valid position.
             Instantiate(bubbleEnemyPrefab, spawnPosition, Quaternion.identity);
 
             // Increment the enemy count and reset the timer.
+            spawnedEnemies++;
             enemyCount++;
             timer = 0.0f;
         }
 
-        // Update the timer.
-        timer += Time.deltaTime;
+        if(spawnedEnemies >= 20)
+        {
+            spawnedEnemies = 0;
+            upgradeWave = true;
+            Debug.Log("Changing from wave 1 to 2.");
+        }
+
+    }
+
+    void spawnEnemiesForWave2()
+    {
+        // Check if it's time to spawn a new enemy and if we haven't reached the maximum enemy count.
+        if (enemyCount < maxEnemies && timer >= spawnInterval)
+        {
+            getValidSpawnPosition();
+            
+            int random = Random.Range(1, 2);
+            switch(random)
+            {
+                case 1:
+                    Instantiate(bubbleEnemyPrefab, spawnPosition, Quaternion.identity);
+                    break;
+                case 2:
+                    Instantiate(FoamEnemyPrefab, spawnPosition, Quaternion.identity);
+                    break;
+            }
+
+            // Increment the enemy count and reset the timer.
+            spawnedEnemies++;
+            enemyCount++;
+            timer = 0.0f;
+        }
+
+        if(spawnedEnemies >= 20)
+        {
+            spawnedEnemies = 0;
+            //upgradeWave = true;
+            Debug.Log("Should change from wave 2 to 3.");
+        }
+    }
+
+    void spawnEnemiesForWave3()
+    {
+        // Check if it's time to spawn a new enemy and if we haven't reached the maximum enemy count.
+        if (enemyCount < maxEnemies && timer >= spawnInterval)
+        {
+            getValidSpawnPosition();
+            
+            int random = Random.Range(1, 2);
+            switch(random)
+            {
+                case 1:
+                    Instantiate(bubbleEnemyPrefab, spawnPosition, Quaternion.identity);
+                    break;
+                case 2:
+                    Instantiate(FoamEnemyPrefab, spawnPosition, Quaternion.identity);
+                    break;
+            }
+
+            // Increment the enemy count and reset the timer.
+            spawnedEnemies++;
+            enemyCount++;
+            timer = 0.0f;
+        }
+
+        if(spawnedEnemies >= 20)
+        {
+            spawnedEnemies = 0;
+            //upgradeWave = true;
+        }
     }
 
 }

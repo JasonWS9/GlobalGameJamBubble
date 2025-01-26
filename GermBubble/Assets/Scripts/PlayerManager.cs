@@ -1,21 +1,36 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
     public int maxHealth = 5;
     public float playerSpeed = 5f;
-    public static float damage = 10f;
+    public float damage = 10f;
 
     public FireType fireType = FireType.Bullet;
     
     public Rigidbody2D rb;
     public Weapon weapon;
-    private int playerHealth = 5;
+    public int playerHealth = 5;
+    
 
     Vector2 moveDirection;
     Vector2 mousePosition;
+
+    public static PlayerManager Instance;
+
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+
+    }
+
     void Start()
     {
         
