@@ -177,7 +177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8288632945155660957, guid: bdcedeb350dc11e45ba36b7bc236fb29, type: 3}
+  m_Sprite: {fileID: 8056269757015164320, guid: 4236bf4ba5fee714b891c8f30b208b1e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 448924613}
   lines:
-  - Welcome to .001% where you have to be the .1% of germs that don't get killed!
+  - Welcome to .001% where you have to be the .01% of germs that don't get killed!
   - You take place in a bathroom and it's your job to stop the germs from killing
     you.
   - But this will not be an easy feat but we wish you the best of luck! Don't forget
