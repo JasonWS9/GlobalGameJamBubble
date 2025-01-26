@@ -6,10 +6,20 @@ using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
-    public int maxHealth = 5;
+    public int maxHealth = 100;
+    public int currentHealth;
     public float playerSpeed = 5f;
     public float damage = 10f;
+    public MyHealthBar HealthBar;
+    public Slider slider;
 
+
+    // public void SetHealth(int health)
+    // {
+    //     slider.value = health;
+    // }
+    
+    
     public FireType fireType = FireType.Bullet;
     
     public Rigidbody2D rb;
@@ -33,12 +43,29 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        
+        currentHealth = maxHealth;
+        HealthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     TakeDamage(1);
+        //
+        // }
+        //
+        // void TakeDamage(int damage)
+        // {
+        //     currentHealth -= damage;
+        //     HealthBar.SetHealth(currentHealth);
+        // }
+        
+        
+        
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
@@ -53,6 +80,7 @@ public class PlayerManager : MonoBehaviour
                     weapon.FireBeam();
                     break;
             }
+            
             
         }
 
@@ -71,8 +99,9 @@ public class PlayerManager : MonoBehaviour
 
     private void playerDamage()
     {
-        playerHealth--;
+        playerHealth-= 10; 
         Debug.Log(playerHealth);
+        HealthBar.SetHealth(playerHealth); 
 
         if (playerHealth <= 0)
         {

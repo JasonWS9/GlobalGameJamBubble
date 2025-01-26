@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HealthUI.text = "Health: " + PlayerManager.Instance.playerHealth;
+        HealthUI.text = "HP: " + PlayerManager.Instance.playerHealth;
         SpeedUI.text = "Speed: " + PlayerManager.Instance.playerSpeed;
         DamageUI.text = "Damage: " + PlayerManager.Instance.damage;
         ScoreUI.text = "Score: " + score;
