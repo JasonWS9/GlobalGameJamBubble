@@ -1,73 +1,58 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     public static bool Paused = false;
     public GameObject PauseMenuCanvas;
-    
+
     void Start()
     {
         Time.timeScale = 1f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Paused)
             {
-                Play();
+                ResumeGame();
             }
             else
             {
-                Stop();
+                PauseGame();
             }
         }
     }
 
-    void Stop()
+    void PauseGame()
     {
         PauseMenuCanvas.SetActive(true);
         Time.timeScale = 0f;
         Paused = true;
-
     }
-    
-   public void Play()
+
+    public void ResumeGame()
     {
         PauseMenuCanvas.SetActive(false);
         Time.timeScale = 1f;
         Paused = false;
-
     }
 
     public void QuitGame()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
-        Debug.Log("User hasQuit");
+#endif
 
+        Debug.Log("User has quit the game.");
     }
 
-    // public void BeastiaryButton()
-    // {
-    //     
-    //     
-    // }
-    
-    
-    
-    
     public void MainMenuButton()
     {
         SceneManager.LoadScene("Main Menu");
-
     }
-    
-    
 }
