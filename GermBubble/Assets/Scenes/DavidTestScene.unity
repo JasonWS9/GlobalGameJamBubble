@@ -865,6 +865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1352183657}
   rb: {fileID: 557127225}
+  health: 5
   moveSpeed: 2
   shoots: 0
   bullet: {fileID: 3281048692623385993, guid: a4f4fc2ea219c2846a173eac77ee57b0, type: 3}
@@ -1052,6 +1053,12 @@ MonoBehaviour:
   playerManager: {fileID: 1352183653}
   score: 0
   powerupUI: {fileID: 1206538865}
+  button1: {fileID: 0}
+  text1: {fileID: 0}
+  button2: {fileID: 0}
+  text2: {fileID: 0}
+  button3: {fileID: 0}
+  text3: {fileID: 0}
   isPowerUpAvailable: 0
 --- !u!1 &844339538
 GameObject:
@@ -1621,6 +1628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1352183652}
   rb: {fileID: 1207300665}
+  health: 5
   moveSpeed: 2
   shoots: 0
   bullet: {fileID: 0}
@@ -1808,7 +1816,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e8452b91095b245978c6c921dd827a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 5
   playerSpeed: 5
+  fireType: 0
   rb: {fileID: 1352183654}
   weapon: {fileID: 1997832857}
 --- !u!50 &1352183654

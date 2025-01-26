@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,11 +28,17 @@ public class GameManager : MonoBehaviour
 
     public GameObject powerupUI;
     public Button button1;
-    public TextMeshProUGUI text1;
+    public TextMeshProUGUI button1text1;
+    public TextMeshProUGUI button1text2;
+    public TextMeshProUGUI button1text3;
     public Button button2;
-    public TextMeshProUGUI text2;
+    public TextMeshProUGUI button2text1;
+    public TextMeshProUGUI button2text2;
+    public TextMeshProUGUI button2text3;
     public Button button3;
-    public TextMeshProUGUI text3;
+    public TextMeshProUGUI button3text1;
+    public TextMeshProUGUI button3text2;
+    public TextMeshProUGUI button3text3;
     public bool isPowerUpAvailable;
     public void increaseScore(int Score)
     {
@@ -50,11 +57,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void DisplayRandomPowerUp(Button button, TextMeshProUGUI text)
+    private void DisplayRandomPowerUp(Button button, TextMeshProUGUI text1, TextMeshProUGUI text2, TextMeshProUGUI text3)
     {
         int randomUID = Random.Range(0, Upgrades.Upgrade.NextUID - 1);
         Upgrades.Upgrade upgrade = Upgrades.upgrades[randomUID];
-        text.text = upgrade.Name + "\n" + upgrade.Description + "\n" + upgrade.Type;
+        text1.text = upgrade.Name;
+        text2.text = upgrade.Description;
+        text3.text = upgrade.Type + "";
         button.onClick.AddListener(delegate {
             Upgrades.ApplyUpgrade(randomUID);
         });
@@ -63,9 +72,9 @@ public class GameManager : MonoBehaviour
 
     private void ReadyPowerUp()
     {
-        DisplayRandomPowerUp(button1, text1);
-        DisplayRandomPowerUp(button2, text2);
-        DisplayRandomPowerUp(button3, text3);
+        DisplayRandomPowerUp(button1, button1text1, button1text2, button1text3);
+        DisplayRandomPowerUp(button2, button2text1, button2text2, button2text3);
+        DisplayRandomPowerUp(button3, button3text1, button3text2, button3text3);
         powerupUI.SetActive(true);
         Time.timeScale = 0f;
         playerManager.enabled = false;
