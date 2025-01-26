@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -125,7 +126,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Death()
     {
-        SceneChanger.GameOverScene();
+        SceneManager.LoadScene("Win LVL 1");
     }
 
     public enum FireType
