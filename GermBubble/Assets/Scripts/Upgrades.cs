@@ -9,7 +9,7 @@ public class Upgrades : MonoBehaviour
         new Upgrade("SpeedUp", "Gotta go fast, Increase speed by 5.", Upgrade.UpgradeType.StatChange),
         new Upgrade("DamageUp","The Stronger, the Dirtier. Increase damage by 5",Upgrade.UpgradeType.StatChange),
         new Upgrade("AddBuddy","Bacteria never fights alone. Add a buddy to help you!", Upgrade.UpgradeType.WeaponChange),
-        new Upgrade("BuddyDamageUp", "Strength in Numbers! Make your allies stronger.", Upgrade.UpgradeType.StatChange),
+        new Upgrade("BuddyDamageUp", "Strength in Numbers! Make your allies stronger by 5.", Upgrade.UpgradeType.StatChange),
         
         new Upgrade("BeamEm", "Blast Through them", Upgrade.UpgradeType.WeaponChange),
         new Upgrade("RadialBlast", "Attack All Around", Upgrade.UpgradeType.WeaponChange),
@@ -26,10 +26,12 @@ public class Upgrades : MonoBehaviour
             case 1: //DamageUp
                 PlayerManager.Instance.damage += 5;
                 break;
-            case 2: //BeamEm
-                PlayerManager.Instance.fireType = PlayerManager.FireType.Beam;
+            case 2: //AddBuddy
+                PlayerManager.Instance.AddBuddy();
                 break;
-                
+            case 3: //BuddyDamageUp
+                PlayerManager.Instance.buddyDamage += 5;
+                break;
         }
     }
 

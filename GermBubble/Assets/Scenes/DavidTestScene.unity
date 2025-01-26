@@ -3370,8 +3370,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  currentHealth: 0
   playerSpeed: 5
   damage: 10
+  HealthBar: {fileID: 0}
+  slider: {fileID: 0}
   fireType: 0
   rb: {fileID: 1352183654}
   weapon: {fileID: 1997832857}
@@ -3979,7 +3982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1567126931
 MonoBehaviour:
   m_ObjectHideFlags: 0

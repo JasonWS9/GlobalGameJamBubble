@@ -221,6 +221,7 @@ public class EnemyManager : MonoBehaviour
     public float initialSpawnInterval = 2.0f; // Initial spawn interval.
     public float spawnIntervalDecay = 0.05f; // How much the spawn interval decreases per wave.
     public int enemiesPerWaveIncrease = 2; // How many more enemies to spawn each wave.
+    public float healthPerWaveIncrease = 5f;
 
     [Header("Bounds")]
     public float lowerBoundFromPlayer;
@@ -237,6 +238,7 @@ public class EnemyManager : MonoBehaviour
     private int spawnedEnemies;
     private float currentSpawnInterval;
     private int currentMaxEnemies;
+    private float currentEnemyHealth;
 
     public static EnemyManager Instance;
 
@@ -272,6 +274,7 @@ public class EnemyManager : MonoBehaviour
             // Make the game progressively harder.
             currentSpawnInterval = Mathf.Max(0.5f, currentSpawnInterval - spawnIntervalDecay); // Lower limit on spawn interval.
             currentMaxEnemies += enemiesPerWaveIncrease;
+            currentEnemyHealth += healthPerWaveIncrease;
 
             Debug.Log($"Wave {wave} started. Spawn Interval: {currentSpawnInterval:F2}, Max Enemies: {currentMaxEnemies}");
         }
@@ -309,7 +312,7 @@ public class EnemyManager : MonoBehaviour
         // Randomly decide which enemy type to spawn.
         GameObject prefab = Random.Range(0, 2) == 0 ? bubbleEnemyPrefab : foamEnemyPrefab;
         Instantiate(prefab, spawnPosition, Quaternion.identity);
-
+        // prefab.EnemyFollowScript.health = currentEnemyHealth;
         spawnedEnemies++;
         enemyCount++;
     }

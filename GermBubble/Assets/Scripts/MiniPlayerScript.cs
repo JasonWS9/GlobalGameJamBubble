@@ -18,6 +18,7 @@ public class MiniPlayerScript : MonoBehaviour
     
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         offset = Random.insideUnitCircle.normalized * radius;
     }
 
@@ -39,10 +40,22 @@ public class MiniPlayerScript : MonoBehaviour
 
     public void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveDirection.x * playerSpeed, moveDirection.y * playerSpeed);
+        rb.linearVelocity = new Vector2(moveDirection.x * PlayerManager.Instance.playerSpeed, moveDirection.y * PlayerManager.Instance.playerSpeed);
 
         Vector2 aimDirection = mousePosition - rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            PlayerManager.Instance.playerDamage();
+        }
+        if (collision.gameObject.CompareTag("EnemyProjectile"))
+        {
+            PlayerManager.Instance.playerDamage();
+        }
     }
 }

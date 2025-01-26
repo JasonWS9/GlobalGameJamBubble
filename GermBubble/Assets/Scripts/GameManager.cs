@@ -53,6 +53,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI button3text1;
     public TextMeshProUGUI button3text2;
     public TextMeshProUGUI button3text3;
+    public Button button4;
+    public TextMeshProUGUI button4text1;
+    public TextMeshProUGUI button4text2;
+    public TextMeshProUGUI button4text3;
     public bool isPowerUpAvailable;
     public void increaseScore(int Score)
     {
@@ -102,6 +106,13 @@ public class GameManager : MonoBehaviour
         button3.onClick.AddListener(delegate {
             Upgrades.ApplyUpgrade(2);
         });
+
+        button4text1.text = Upgrades.upgrades[3].Name;
+        button4text2.text = Upgrades.upgrades[3].Description;
+        button4text3.text = Upgrades.upgrades[3].Type + "";
+        button4.onClick.AddListener(delegate {
+            Upgrades.ApplyUpgrade(3);
+        });
     }
 
     private void ReadyPowerUp()
@@ -138,6 +149,15 @@ public class GameManager : MonoBehaviour
         playerManager.enabled = true;
         powerupUI.SetActive(false);
         Debug.Log("powerup3");
+        //Actual powerup
+    }
+
+    public void PowerUp4()
+    {
+        Time.timeScale = 1f;
+        playerManager.enabled = true;
+        powerupUI.SetActive(false);
+        Debug.Log("powerup4");
         //Actual powerup
     }
 

@@ -89,6 +89,15 @@ public class EnemyFollowScript : MonoBehaviour
             // EnemyManager.Instance.xp+=5;
         }
         
+        if (collision.gameObject.CompareTag("BuddyProjectile"))
+        {
+            Debug.Log("Enemy destroyed");
+            //Destroy(gameObject);
+            health -= PlayerManager.Instance.buddyDamage;
+            // EnemyManager.Instance.enemyCount--;
+            GameManager.Instance.increaseScore(1);
+            // EnemyManager.Instance.xp+=5;
+        }
             
     }
 }

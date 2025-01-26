@@ -10,8 +10,10 @@ public class PlayerManager : MonoBehaviour
     public int currentHealth;
     public float playerSpeed = 5f;
     public float damage = 10f;
+    public float buddyDamage = 5f;
     public MyHealthBar HealthBar;
     public Slider slider;
+    public GameObject buddy;
 
 
     // public void SetHealth(int health)
@@ -97,7 +99,7 @@ public class PlayerManager : MonoBehaviour
         rb.rotation = aimAngle;
     }
 
-    private void playerDamage()
+    public void playerDamage()
     {
         playerHealth-= 10; 
         Debug.Log(playerHealth);
@@ -129,6 +131,11 @@ public class PlayerManager : MonoBehaviour
     public enum FireType
     {
         Bullet, Beam
+    }
+
+    public void AddBuddy()
+    {
+        Instantiate(buddy, Vector2.zero, Quaternion.identity);
     }
 
 }

@@ -108,10 +108,10 @@ MonoBehaviour:
   moveSpeed: 2
   shoots: 1
   bullet: {fileID: 3281048692623385993, guid: a4f4fc2ea219c2846a173eac77ee57b0, type: 3}
-  comfyDistance: 2
-  coolDown: 2
-  shotspeed: 250
-  shotOffset: 2
+  comfyDistance: 1
+  coolDown: 1.5
+  shotspeed: 300
+  shotOffset: 1.5
 --- !u!50 &8023620655528199969
 Rigidbody2D:
   serializedVersion: 5
